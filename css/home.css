@@ -14,7 +14,7 @@ html, body {
 }
 
 body {
-    --bg: radial-gradient(circle at center, #1a1a2e 0%, #000000 100%);
+    --bg: #000000;
     --text: #ffffff;
     --muted: #9fb0c9;
     --accent: #00f3ff;
