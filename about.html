@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PUNteerased</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="css/loader.css" />
+</head>
+<body>
+    <div id="loader">
+        <canvas id="matrix"></canvas>
+    </div>
+
+    <main class="home content">
+        <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="menu-panel">
+            MENU
+        </button>
+        <nav class="menu-panel" id="menu-panel" aria-hidden="true">
+            <a class="menu-item" data-en="HOME" data-th="หน้าแรก" href="home.html">
+                <span class="menu-label">HOME</span>
+            </a>
+            <a class="menu-item is-current" data-en="ABOUT" data-th="เกี่ยวกับ" aria-disabled="true" tabindex="-1">
+                <span class="menu-label">ABOUT</span>
+                <span class="menu-dot" aria-hidden="true">•</span>
+            </a>
+            <a class="menu-item" data-en="PORTFOLIO" data-th="ผลงาน" href="portfolio.html">
+                <span class="menu-label">PORTFOLIO</span>
+            </a>
+            <a class="menu-item" data-en="CONTACT" data-th="ติดต่อ" href="contact.html">
+                <span class="menu-label">CONTACT</span>
+            </a>
+            <button class="menu-item menu-action" id="translation-toggle" data-mode="en">
+                <span class="menu-label">TH / EN</span>
+            </button>
+            <button class="menu-item menu-action" id="theme-toggle" data-theme="night">
+                <span class="menu-label">DAY / NIGHT</span>
+            </button>
+        </nav>
+        <div class="title-stack">
+            <p class="eyebrow" data-en="PUNTEERASED" data-th="PUNTEERASED">PUNTEERASED</p>
+            <h1 data-en="SITE UNDER UPDATE" data-th="กำลังอัปเดตเว็บไซต์">SITE UNDER UPDATE</h1>
+            <p class="subtitle" data-en="The website is currently being updated. Please wait for the latest updates." data-th="ขณะนี้กำลังอยู่ในช่วงการอัพเดทเว็บนะครับ โปรดรอการอัพเดทใหม่ๆ">
+                The website is currently being updated. Please wait for the latest updates.
+            </p>
+            <p class="subtitle" data-en="If you find anything unusual on the website, please report it to IG: pxn_t.u" data-th="หากพบเจอสิ่งผิดปกติในเว็บโปรดแจ้ง IG: pxn_t.u">
+                If you find anything unusual on the website, please report it to IG: pxn_t.u
+            </p>
+        </div>
+    </main>
+
+    <script src="js/loader.js"></script>
+    <script src="js/menu.js"></script>
+</body>
+</html>
