@@ -1,0 +1,163 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    overflow: hidden;
+}
+
+body {
+    font-family: "Share Tech Mono", "Courier New", monospace;
+}
+
+
+#terminal-layer {
+    position: fixed;
+    inset: 0;
+    background: #000000;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    letter-spacing: 0.6rem;
+    text-align: center;
+    transition: opacity 0.2s ease;
+}
+
+#terminal-layer.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.terminal-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
+.main-text {
+    font-size: clamp(8rem, 18vw, 14rem);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.prompt {
+    font-size: 1.25rem;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    padding: 0.55rem 1.5rem;
+    letter-spacing: 0.25rem;
+    cursor: pointer;
+    animation: blink 1s steps(1, end) infinite;
+    user-select: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.prompt.ready {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.started .prompt {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.denied {
+    font-size: 0.95rem;
+    color: #ff4d4d;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    letter-spacing: 0.2rem;
+}
+
+.denied.show {
+    opacity: 1;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.glitch-active {
+    animation: screen-shake 0.08s infinite;
+}
+
+.glitch-active .main-text,
+.glitch-active .prompt {
+    text-shadow: 2px 0 #ff0055, -2px 0 #00eaff;
+    filter: saturate(1.4) contrast(1.1);
+}
+
+.glitch-active .main-text {
+    transform: scaleY(-1) skewX(-8deg);
+}
+
+@keyframes screen-shake {
+    0% { transform: translate(0, 0); }
+    15% { transform: translate(-5px, 3px); }
+    30% { transform: translate(6px, -4px); }
+    45% { transform: translate(-4px, 6px); }
+    60% { transform: translate(5px, -5px); }
+    75% { transform: translate(-6px, -2px); }
+    90% { transform: translate(4px, 5px); }
+    100% { transform: translate(0, 0); }
+}
+
+
+@media (max-width: 1024px) {
+    #terminal-layer {
+        letter-spacing: 0.35rem;
+    }
+
+    .terminal-inner {
+        gap: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    #terminal-layer {
+        letter-spacing: 0.2rem;
+    }
+
+    .main-text {
+        font-size: clamp(4.5rem, 16vw, 9rem);
+    }
+
+    .prompt {
+        font-size: 1.05rem;
+        padding: 0.5rem 1.1rem;
+        letter-spacing: 0.18rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .terminal-inner {
+        padding: 1.2rem;
+        gap: 1rem;
+    }
+
+    .main-text {
+        font-size: clamp(3.8rem, 18vw, 7.5rem);
+    }
+
+    .denied {
+        font-size: 0.85rem;
+    }
+
+    .shard-content .main-text {
+        font-size: clamp(2.6rem, 10vw, 5.2rem);
+    }
+}
