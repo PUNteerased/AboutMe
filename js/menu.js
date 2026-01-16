@@ -4,6 +4,18 @@ const menuItems = Array.from(document.querySelectorAll(".menu-item"));
 const translationToggle = document.getElementById("translation-toggle");
 const themeToggle = document.getElementById("theme-toggle");
 const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
+const cookieDays = 365;
+
+function setCookie(name, value, days) {
+    const expires = new Date(Date.now() + days * 864e5).toUTCString();
+    const secureFlag = window.location.protocol === "https:" ? "; secure" : "";
+    document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/; samesite=lax${secureFlag}`;
+}
+
+function getCookie(name) {
+    const match = document.cookie.match(new RegExp(`(?:^|; )${name}=([^;]*)`));
+    return match ? decodeURIComponent(match[1]) : null;
+}
 
 function toggleMenu(forceOpen) {
     const shouldOpen = typeof forceOpen === "boolean" ? forceOpen : !menuPanel.classList.contains("open");
@@ -37,11 +49,14 @@ function setLanguage(lang) {
         }
     });
     translationToggle.dataset.mode = lang;
+    document.documentElement.lang = lang;
+    setCookie("pte_lang", lang, cookieDays);
 }
 
 function setTheme(mode) {
     document.body.classList.toggle("theme-light", mode === "day");
     themeToggle.dataset.theme = mode;
+    setCookie("pte_theme", mode, cookieDays);
 }
 
 translationToggle.addEventListener("click", () => {
@@ -54,8 +69,10 @@ themeToggle.addEventListener("click", () => {
     setTheme(nextTheme);
 });
 
-setLanguage("en");
-setTheme("night");
+const savedLang = getCookie("pte_lang");
+const savedTheme = getCookie("pte_theme");
+setLanguage(savedLang === "th" ? "th" : "en");
+setTheme(savedTheme === "day" ? "day" : "night");
 
 menuItems.forEach((item) => {
     const labelSpan = item.querySelector(".menu-label") || item;
