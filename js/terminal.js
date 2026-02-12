@@ -132,7 +132,7 @@ function startSequence() {
     startGlitchPhase(warningEnd);
 
     setTimeout(() => {
-        window.location.href = "home.html";
+        window.location.href = "index.html";
     }, warningEnd + 2500);
 }
 
