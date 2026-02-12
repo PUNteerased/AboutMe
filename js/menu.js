@@ -27,7 +27,13 @@ function toggleMenu(forceOpen) {
 menuToggle.addEventListener("click", () => toggleMenu());
 
 document.addEventListener("click", (event) => {
-    if (!menuPanel.contains(event.target) && event.target !== menuToggle) {
+    if (!menuPanel.contains(event.target) && !menuToggle.contains(event.target)) {
+        toggleMenu(false);
+    }
+});
+
+menuPanel.addEventListener("click", (event) => {
+    if (event.target === menuPanel) {
         toggleMenu(false);
     }
 });
