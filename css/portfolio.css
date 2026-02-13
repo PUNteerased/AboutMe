@@ -37,10 +37,6 @@
     margin-top: calc(var(--hex-height) * -0.25 + var(--hex-gap));
 }
 
-.hive-row.is-offset {
-    transform: translateX(calc((var(--cell-size) + var(--hex-gap)) * 0.5));
-}
-
 .hive-cell {
     width: var(--cell-size);
     height: var(--hex-height);
@@ -283,10 +279,6 @@ body.theme-light .project-banner__close {
     .hive-grid {
         --cell-size: calc(var(--desktop-cell-size) * 0.75);
         --hex-gap: 2px;
-    }
-
-    .hive-row.is-offset {
-        transform: translateX(calc((var(--cell-size) + var(--hex-gap)) * 0.5));
     }
 
     .hive-header h1 {

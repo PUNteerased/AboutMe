@@ -11,16 +11,21 @@ const bannerBackdrop = banner ? banner.querySelector("[data-close-banner]") : nu
 const defaultHiveImage = "image/pun.png";
 
 function getBaseColumns() {
-    if (window.innerWidth <= 420) return 2;
-    if (window.innerWidth <= 720) return 3;
-    if (window.innerWidth <= 980) return 4;
-    return 5;
+    if (!hiveGrid) return 3;
+
+    const styles = window.getComputedStyle(hiveGrid);
+    const cellSize = parseFloat(styles.getPropertyValue("--cell-size")) || 120;
+    const hexGap = parseFloat(styles.getPropertyValue("--hex-gap")) || 4;
+    const availableWidth = hiveGrid.clientWidth || window.innerWidth;
+    const maxFit = Math.floor((availableWidth + hexGap) / (cellSize + hexGap));
+
+    return Math.max(2, Math.min(6, maxFit));
 }
 
 function layoutHiveRows() {
     if (!hiveGrid) return;
     const baseCols = getBaseColumns();
-    const altCols = Math.max(2, baseCols - 1);
+    const altCols = baseCols > 2 ? baseCols - 1 : 2;
     const pattern = [baseCols, altCols];
     let patternIndex = 0;
     let cursor = 0;
@@ -34,7 +39,11 @@ function layoutHiveRows() {
 
         const row = document.createElement("div");
         row.className = "hive-row";
-        if (rowSize === altCols) row.classList.add("is-offset");
+        if (patternIndex % 2 === 0) {
+            row.style.transform = "translateX(calc((var(--cell-size) + var(--hex-gap)) * 0.5))";
+        } else {
+            row.style.transform = "translateX(0)";
+        }
 
         slice.forEach((cell) => row.appendChild(cell));
         hiveGrid.appendChild(row);
