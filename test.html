@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | The Hive Cluster</title>
+    <style>
+        /* --- GLOBAL STYLES --- */
+        body {
+            background-color: #050505; /* สีดำลึก */
+            color: white;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        h1 { margin-top: 40px; margin-bottom: 50px; text-transform: uppercase; letter-spacing: 5px; color: #ffc400; }
+
+        /* --- THE HIVE SYSTEM --- */
+        :root {
+            --hex-w: 130px; /* ปรับขนาดความกว้างตรงนี้ทีเดียว */
+            --hex-h: calc(var(--hex-w) * 1.1547); /* สูตรคำนวณความสูงหกเหลี่ยมหัวแหลม */
+            --hex-gap: 3px; /* ความหนาของเส้นขอบทอง */
+        }
+
+        .hive-cluster {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* จัดกึ่งกลางทั้งกลุ่ม */
+            padding-bottom: 100px;
+        }
+
+        .hex-row {
+            display: flex;
+            justify-content: center;
+            /* ดันแถวล่างขึ้นไปซ้อนกับแถวบน (25% ของความสูง) ทำให้สับหว่างกันพอดี */
+            margin-top: calc(var(--hex-h) * -0.25); 
+        }
+
+        /* ยกเว้นแถวแรกไม่ต้องดึงขึ้น */
+        .hex-row:first-child { margin-top: 0; }
+
+        /* --- THE HEXAGON (กรอบสีทอง) --- */
+        .hex {
+            position: relative;
+            width: var(--hex-w);
+            height: var(--hex-h);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            background: #ffc400; /* สีเส้นขอบ */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: 0.4s ease;
+            cursor: pointer;
+        }
+
+        /* --- THE INNER CONTENT (เนื้อหาสีดำ/รูปภาพ) --- */
+        .hex-inner {
+            width: calc(100% - var(--hex-gap) * 2);
+            height: calc(100% - var(--hex-gap) * 2);
+            background: #111;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hex-inner img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            transition: 0.4s;
+        }
+
+        .hex-text {
+            position: absolute;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: 0.4s;
+        }
+
+        .hex-text h3 { margin: 0; color: #ffc400; font-size: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+        .hex-text p { margin: 5px 0 0; font-size: 0.7rem; color: #fff; }
+
+        /* --- HOVER EFFECTS --- */
+        .hex:hover {
+            transform: scale(1.1); /* ขยายใหญ่ขึ้น */
+            z-index: 10; /* ดันให้อยู่บนสุด */
+            background: #fff; /* ขอบเปลี่ยนเป็นสีขาว */
+            box-shadow: 0 0 20px rgba(255, 196, 0, 0.8);
+        }
+
+        .hex:hover .hex-inner img { opacity: 0.1; } /* รูปจางลงให้เห็นข้อความ */
+        .hex:hover .hex-text { opacity: 1; transform: translateY(0); } /* ข้อความลอยขึ้นมา */
+
+        /* --- RESPONSIVE (ย่อขนาดลงเมื่อดูในมือถือ) --- */
+        @media (max-width: 768px) {
+            :root { --hex-w: 80px; } /* ลดขนาดหกเหลี่ยมลงเพื่อให้ทรงยังอยู่ครบ */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>PORTFOLIO</h1>
+
+    <div class="hive-cluster">
+        
+        <div class="hex-row">
+            <div class="hex"><div class="hex-inner"><img src="https://picsum.photos/200/300?1"><div class="hex-text"><h3>PROJECT</h3><p>Design</p></div></div></div>
+            <div class="hex"><div class="hex-inner"><img src="https://picsum.photos/200/300?2"><div class="hex-text"><h3>PROJECT</h3><p>Dev</p></div></div></div>
+            <div class="hex"><div class="hex-inner"><img src="https://picsum.photos/200/300?3"><div class="hex-text"><h3>PROJECT</h3><p>UX/UI</p></div></div></div>
+            <div class="hex"><div class="hex-inner"><img src="https://picsum.photos/200/300?4"><div class="hex-text"><h3>PROJECT</h3><p>Web</p></div></div></div>
+        </div>
+
+        <div class="hex-row">
+            <div class="hex"><div class="hex-inner"><img src="https://picsum.photos/200/300?5"><div class="hex-text"><h3>PROJECT</h3><p>App</p></div></div></div>
+            <div class="hex"><div class="hex-inner"><img src="https://picsum.photos/200/300?6"><div class="hex-text"><h3>PROJECT</h3><p>API</p></div></div></div>
+            <div class="hex"><div class="hex-inner"><img src="https://picsum.photos/200/300?7"><div class="hex-text"><h3>PROJECT</h3><p>Core</p></div></div></div>
+            <div class="hex"><div class="hex-inner"><img src="https://picsum.photos/200/300?8"><div class="hex-text"><h3>PROJECT</h3><p>Data</p></div></div></div>
+            <div class="hex"><div class="hex-inner"><img src="https://picsum.photos/200/300?9"><div class="hex-text"><h3>PROJECT</h3><p>Cloud</p></div></div></div>
+        </div>
+
+        <div class="hex-row">
+            <div class="hex"><div class="hex-inner"><img src="https://picsum.photos/200/300?10"><div class="hex-text"><h3>PROJECT</h3><p>AI</p></div></div></div>
+            <div class="hex"><div class="hex-inner"><img src="https://picsum.photos/200/300?11"><div class="hex-text"><h3>PROJECT</h3><p>ML</p></div></div></div>
+            <div class="hex"><div class="hex-inner"><img src="https://picsum.photos/200/300?12"><div class="hex-text"><h3>PROJECT</h3><p>Sec</p></div></div></div>
+            <div class="hex"><div class="hex-inner"><img src="https://picsum.photos/200/300?13"><div class="hex-text"><h3>PROJECT</h3><p>IoT</p></div></div></div>
+        </div>
+
+        <div class="hex-row">
+            <div class="hex"><div class="hex-inner"><img src="https://picsum.photos/200/300?14"><div class="hex-text"><h3>PROJECT</h3><p>VR</p></div></div></div>
+            <div class="hex"><div class="hex-inner"><img src="https://picsum.photos/200/300?15"><div class="hex-text"><h3>PROJECT</h3><p>AR</p></div></div></div>
+            <div class="hex"><div class="hex-inner"><img src="https://picsum.photos/200/300?16"><div class="hex-text"><h3>PROJECT</h3><p>Game</p></div></div></div>
+        </div>
+
+    </div>
+
+</body>
+</html>
