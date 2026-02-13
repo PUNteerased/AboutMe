@@ -38,7 +38,7 @@
 }
 
 .hive-row.is-offset {
-    transform: translateX(0);
+    transform: translateX(calc((var(--cell-size) + var(--hex-gap)) * 0.5));
 }
 
 .hive-cell {
@@ -286,7 +286,7 @@ body.theme-light .project-banner__close {
     }
 
     .hive-row.is-offset {
-        transform: translateX(0);
+        transform: translateX(calc((var(--cell-size) + var(--hex-gap)) * 0.5));
     }
 
     .hive-header h1 {
