@@ -53,6 +53,8 @@
     position: relative;
     transition: transform 0.24s ease, box-shadow 0.24s ease, filter 0.24s ease;
     box-shadow: 0 0 0 1px rgba(255, 196, 0, 0.55);
+    --x-shift: 0px;
+    transform: translateX(var(--x-shift));
 }
 
 .hive-cell::before {
@@ -77,7 +79,7 @@
 
 .hive-cell:hover,
 .hive-cell:focus-visible {
-    transform: scale(1.08);
+    transform: translateX(var(--x-shift)) scale(1.08);
     filter: saturate(1.06);
     outline: none;
     z-index: 3;
@@ -280,8 +282,29 @@ body.theme-light .project-banner__close {
     }
 
     .hive-grid {
-        --cell-size: clamp(74px, 16.2vw, 96px);
+        --cell-size: clamp(78px, 24vw, 108px);
         --hex-gap: 4px;
+        display: grid;
+        grid-template-columns: repeat(2, var(--cell-size));
+        column-gap: var(--hex-gap);
+        row-gap: calc(var(--hex-height) * -0.25 + (var(--hex-gap) * 0.5));
+        justify-content: center;
+        align-items: start;
+    }
+
+    .hive-row,
+    .hive-row.is-offset {
+        display: contents;
+        transform: none;
+    }
+
+    .hive-cell {
+        --x-shift: 0px;
+    }
+
+    .hive-cell:nth-child(4n + 3),
+    .hive-cell:nth-child(4n + 4) {
+        --x-shift: calc((var(--cell-size) + var(--hex-gap)) * 0.5);
     }
 
     .project-banner__card {
