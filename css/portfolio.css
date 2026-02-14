@@ -260,28 +260,6 @@ body.theme-light .project-banner__close {
 
 @media (max-width: 980px) {
     .hive-grid {
-        --cell-size: clamp(96px, 16vw, 124px);
-        --hex-gap: 5px;
-    }
-
-    .project-banner__card {
-        grid-template-columns: 1fr;
-        min-height: 0;
-    }
-
-    .project-banner__media-wrap {
-        min-height: 220px;
-    }
-}
-
-@media (max-width: 720px) {
-    .home {
-        padding-top: 5.2rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-
-    .hive-grid {
         --cell-size: clamp(78px, 24vw, 108px);
         --hex-gap: 4px;
         display: grid;
@@ -305,6 +283,28 @@ body.theme-light .project-banner__close {
     .hive-cell:nth-child(4n + 3),
     .hive-cell:nth-child(4n + 4) {
         --x-shift: calc((var(--cell-size) + var(--hex-gap)) * 0.5);
+    }
+
+    .project-banner__card {
+        grid-template-columns: 1fr;
+        min-height: 0;
+    }
+
+    .project-banner__media-wrap {
+        min-height: 220px;
+    }
+}
+
+@media (max-width: 720px) {
+    .home {
+        padding-top: 5.2rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .hive-grid {
+        --cell-size: clamp(74px, 22vw, 98px);
+        --hex-gap: 3px;
     }
 
     .project-banner__card {
