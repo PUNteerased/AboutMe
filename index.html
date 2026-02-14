@@ -10,6 +10,93 @@
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/home.css" />
     <link rel="stylesheet" href="css/loader.css" />
+    <style>
+        .error-404-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            display: grid;
+            place-items: center;
+            background: rgba(0, 0, 0, 0.94);
+            backdrop-filter: blur(3px);
+            color: #ffffff;
+            text-align: center;
+            pointer-events: auto;
+        }
+
+        .error-404-overlay__decor {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .error-404-overlay__sign {
+            position: absolute;
+            width: var(--size, 64px);
+            height: var(--size, 64px);
+            object-fit: contain;
+            opacity: 0.88;
+            filter: drop-shadow(0 0 8px rgba(255, 196, 0, 0.35));
+            user-select: none;
+        }
+
+        .error-404-overlay__card {
+            border: 1px solid rgba(255, 255, 255, 0.75);
+            padding: 1.6rem 2.8rem;
+            border-radius: 12px;
+            background: rgba(8, 8, 8, 0.9);
+            box-shadow: 0 0 24px rgba(255, 196, 0, 0.35);
+            width: min(100vw, 1000px);
+            position: relative;
+            z-index: 2;
+        }
+
+        .error-404-overlay__code {
+            margin: 0;
+            font-size: clamp(4.5rem, 14vw, 8rem);
+            letter-spacing: 0.35rem;
+        }
+
+        .error-404-overlay__title {
+            margin: 0.45rem 0 0;
+            font-size: clamp(1.65rem, 4.8vw, 2.5rem);
+            color: #ffffff;
+            letter-spacing: 0.2rem;
+        }
+
+        .error-404-overlay__desc {
+            margin: 0.8rem 0 0;
+            color: #ffffff;
+            letter-spacing: 0.1rem;
+            font-size: clamp(1.2rem, 2.8vw, 1.5rem);
+        }
+
+        @media (max-width: 768px) {
+            .error-404-overlay__card {
+                width: min(96vw, 680px);
+                padding: 1.8rem 1.2rem;
+                border-radius: 10px;
+            }
+
+            .error-404-overlay__code {
+                font-size: clamp(4.8rem, 21vw, 7.2rem);
+                letter-spacing: 0.22rem;
+                line-height: 1;
+            }
+
+            .error-404-overlay__title {
+                font-size: clamp(1.5rem, 6.2vw, 2.3rem);
+                letter-spacing: 0.12rem;
+            }
+
+            .error-404-overlay__desc {
+                font-size: clamp(1.08rem, 4.1vw, 1.5rem);
+                letter-spacing: 0.03rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <div id="loader">
@@ -54,6 +141,114 @@
     </main>
 
     <footer class="site-footer">Copyright © 2026 PUNteerased. All rights reserved.</footer>
+
+    <section class="error-404-overlay" aria-live="polite" role="alertdialog" aria-modal="true">
+        <div class="error-404-overlay__decor" id="error-404-decor" aria-hidden="true"></div>
+        <div class="error-404-overlay__card">
+            <h1 class="error-404-overlay__code">404</h1>
+            <p class="error-404-overlay__title">PAGE NOT FOUND</p>
+            <p class="error-404-overlay__desc">This page is blocked. Navigation is temporarily unavailable.</p>
+            <p class="error-404-overlay__desc">If you find anything unusual on the website, please report it to IG: pxn_t.u</p>
+            <p class="error-404-overlay__desc">ขณะกำลังอยู่ในช่วงการปรับปรุงและอัพเดทเว็บไซต์ โปรดรอการอัพเดทใหม่ๆ</p>
+            <p class="error-404-overlay__desc">หากพบเจอสิ่งผิดปกติในเว็บโปรดแจ้ง IG: pxn_t.u</p>
+        </div>
+    </section>
+
+    <script>
+        (function placeConstructionSigns() {
+            const overlay = document.querySelector(".error-404-overlay");
+            const card = document.querySelector(".error-404-overlay__card");
+            const decor = document.getElementById("error-404-decor");
+            if (!overlay || !card || !decor) return;
+
+            function random(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            function overlaps(a, b, padding = 8) {
+                return !(
+                    a.right + padding <= b.left ||
+                    a.left >= b.right + padding ||
+                    a.bottom + padding <= b.top ||
+                    a.top >= b.bottom + padding
+                );
+            }
+
+            function addSign(x, y, size, rotation, opacity) {
+                const img = document.createElement("img");
+                img.className = "error-404-overlay__sign";
+                img.src = "image/fix.png";
+                img.alt = "";
+                img.draggable = false;
+                img.style.left = `${x}px`;
+                img.style.top = `${y}px`;
+                img.style.setProperty("--size", `${size}px`);
+                img.style.transform = `rotate(${rotation}deg)`;
+                img.style.opacity = `${opacity}`;
+                decor.appendChild(img);
+            }
+
+            function build() {
+                decor.innerHTML = "";
+                const rect = card.getBoundingClientRect();
+                const w = overlay.clientWidth;
+                const h = overlay.clientHeight;
+                const signCount = w < 768 ? 14 : 22;
+                const minSize = w < 768 ? 34 : 44;
+                const maxSize = w < 768 ? 70 : 96;
+                const placedRects = [];
+
+                for (let i = 0; i < signCount; i += 1) {
+                    let placed = false;
+                    const maxAttempts = 80;
+
+                    for (let attempt = 0; attempt < maxAttempts; attempt += 1) {
+                        const size = random(minSize, maxSize);
+                        const zone = Math.floor(random(0, 4));
+                        const gap = 14;
+                        let x = 0;
+                        let y = 0;
+
+                        if (zone === 0) {
+                            x = random(0, Math.max(1, w - size));
+                            y = random(0, Math.max(1, rect.top - size - gap));
+                        } else if (zone === 1) {
+                            x = random(0, Math.max(1, w - size));
+                            y = random(rect.bottom + gap, Math.max(rect.bottom + gap + 1, h - size));
+                        } else if (zone === 2) {
+                            x = random(0, Math.max(1, rect.left - size - gap));
+                            y = random(Math.max(0, rect.top - size * 0.6), Math.min(h - size, rect.bottom));
+                        } else {
+                            x = random(rect.right + gap, Math.max(rect.right + gap + 1, w - size));
+                            y = random(Math.max(0, rect.top - size * 0.6), Math.min(h - size, rect.bottom));
+                        }
+
+                        const candidate = { left: x, top: y, right: x + size, bottom: y + size };
+                        const isOverlapping = placedRects.some((box) => overlaps(candidate, box));
+                        if (isOverlapping) continue;
+
+                        addSign(x, y, size, random(-45, 45), random(0.38, 0.86));
+                        placedRects.push(candidate);
+                        placed = true;
+                        break;
+                    }
+
+                    if (!placed) {
+                        // Skip this sign when free space is exhausted.
+                        continue;
+                    }
+                }
+            }
+
+            let t = null;
+            window.addEventListener("resize", () => {
+                clearTimeout(t);
+                t = setTimeout(build, 120);
+            });
+
+            build();
+        })();
+    </script>
 
     <script src="js/loader.js"></script>
     <script src="js/menu.js"></script>
