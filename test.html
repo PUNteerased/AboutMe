@@ -3,145 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | The Hive Cluster</title>
+    <title>Contact | PUNTEERASED</title>
     <style>
-        /* --- GLOBAL STYLES --- */
+        /* --- 1. GLOBAL & HIDE SCROLLBAR --- */
         body {
-            background-color: #050505; /* สีดำลึก */
-            color: white;
-            font-family: 'Courier New', Courier, monospace;
             margin: 0;
+            background-color: #050505; /* พื้นหลังสีดำคลีนๆ */
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            
+            /* ซ่อน Scrollbar สำหรับ Firefox */
+            scrollbar-width: none; 
+            /* ซ่อน Scrollbar สำหรับ IE/Edge */
+            -ms-overflow-style: none; 
+        }
+
+        /* ซ่อน Scrollbar สำหรับ Chrome, Safari, Opera */
+        body::-webkit-scrollbar { 
+            display: none; 
+        }
+
+        /* --- 2. LAYOUT จัดหน้าจอ --- */
+        .contact-section {
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow-x: hidden;
-        }
-
-        h1 { margin-top: 40px; margin-bottom: 50px; text-transform: uppercase; letter-spacing: 5px; color: #ffc400; }
-
-        /* --- THE HIVE SYSTEM --- */
-        :root {
-            --hex-w: 130px; /* ปรับขนาดความกว้างตรงนี้ทีเดียว */
-            --hex-h: calc(var(--hex-w) * 1.1547); /* สูตรคำนวณความสูงหกเหลี่ยมหัวแหลม */
-            --hex-gap: 3px; /* ความหนาของเส้นขอบทอง */
-        }
-
-        .hive-cluster {
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* จัดกึ่งกลางทั้งกลุ่ม */
-            padding-bottom: 100px;
-        }
-
-        .hex-row {
-            display: flex;
-            justify-content: center;
-            /* ดันแถวล่างขึ้นไปซ้อนกับแถวบน (25% ของความสูง) ทำให้สับหว่างกันพอดี */
-            margin-top: calc(var(--hex-h) * -0.25); 
-        }
-
-        /* ยกเว้นแถวแรกไม่ต้องดึงขึ้น */
-        .hex-row:first-child { margin-top: 0; }
-
-        /* --- THE HEXAGON (กรอบสีทอง) --- */
-        .hex {
-            position: relative;
-            width: var(--hex-w);
-            height: var(--hex-h);
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            background: #ffc400; /* สีเส้นขอบ */
-            display: flex;
             justify-content: center;
             align-items: center;
-            transition: 0.4s ease;
-            cursor: pointer;
+            padding: 50px 20px;
         }
 
-        /* --- THE INNER CONTENT (เนื้อหาสีดำ/รูปภาพ) --- */
-        .hex-inner {
-            width: calc(100% - var(--hex-gap) * 2);
-            height: calc(100% - var(--hex-gap) * 2);
+        .contact-container {
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
             background: #111;
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .contact-info, .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        /* --- 3. SCROLL MOTION ANIMATION (คลาสที่รอการเลื่อนเจอ) --- */
+        .scroll-hidden {
+            opacity: 0;
+            transform: translateY(40px); /* เลื่อนต่ำลงไป 40px */
+            transition: all 0.8s ease-out; /* ความนุ่มนวลตอนโผล่ขึ้นมา */
+        }
+
+        /* คลาสที่จะถูกเพิ่มด้วย JavaScript เมื่อเลื่อนมาถึง */
+        .scroll-show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* หน่วงเวลาให้ฝั่งขวาโผล่มาช้ากว่าฝั่งซ้ายนิดนึง */
+        .delay-1 { transition-delay: 0.2s; }
+
+        /* --- 4. CONTACT INFO & SOCIAL MEDIA --- */
+        h1 { font-size: 3rem; margin-top: 0; margin-bottom: 20px; }
+        p { color: #aaa; line-height: 1.6; margin-bottom: 40px; }
+
+        .social-links {
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-btn {
+            display: flex;
             align-items: center;
-            text-align: center;
-            position: relative;
+            gap: 15px;
+            text-decoration: none;
+            color: #fff;
+            padding: 15px 20px;
+            background: #1a1a1a;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            letter-spacing: 1px;
+            border: 1px solid #333;
         }
 
-        .hex-inner img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            opacity: 0.4;
-            transition: 0.4s;
+        /* สีตอน Hover ของแต่ละแอป */
+        .social-btn.ig:hover { background: #E1306C; border-color: #E1306C; }
+        .social-btn.fb:hover { background: #1877F2; border-color: #1877F2; }
+        .social-btn.line:hover { background: #00B900; border-color: #00B900; }
+        .social-btn.github:hover { background: #ffffff; color: #000; border-color: #fff; }
+
+        .social-btn svg { width: 24px; height: 24px; fill: currentColor; }
+
+        /* --- 5. FORM STYLE --- */
+        .input-box {
+            margin-bottom: 25px;
         }
 
-        .hex-text {
-            position: absolute;
-            z-index: 2;
-            opacity: 0;
-            transform: translateY(15px);
-            transition: 0.4s;
+        .input-box input, .input-box textarea {
+            width: 100%;
+            padding: 15px;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid #333;
+            color: #fff;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: 0.3s;
+            font-family: inherit;
         }
 
-        .hex-text h3 { margin: 0; color: #ffc400; font-size: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
-        .hex-text p { margin: 5px 0 0; font-size: 0.7rem; color: #fff; }
+        .input-box textarea { height: 120px; resize: none; }
 
-        /* --- HOVER EFFECTS --- */
-        .hex:hover {
-            transform: scale(1.1); /* ขยายใหญ่ขึ้น */
-            z-index: 10; /* ดันให้อยู่บนสุด */
-            background: #fff; /* ขอบเปลี่ยนเป็นสีขาว */
-            box-shadow: 0 0 20px rgba(255, 196, 0, 0.8);
+        .input-box input:focus, .input-box textarea:focus {
+            outline: none;
+            border-bottom-color: #fff; /* เปลี่ยนเป็นสีขาวตอนพิมพ์ */
         }
 
-        .hex:hover .hex-inner img { opacity: 0.1; } /* รูปจางลงให้เห็นข้อความ */
-        .hex:hover .hex-text { opacity: 1; transform: translateY(0); } /* ข้อความลอยขึ้นมา */
+        .submit-btn {
+            background: #fff;
+            color: #000;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
 
-        /* --- RESPONSIVE (ย่อขนาดลงเมื่อดูในมือถือ) --- */
+        .submit-btn:hover {
+            background: #ccc;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255,255,255,0.2);
+        }
+
+        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            :root { --hex-w: 80px; } /* ลดขนาดหกเหลี่ยมลงเพื่อให้ทรงยังอยู่ครบ */
+            .contact-container { padding: 40px 20px; }
+            h1 { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
 
-    <h1>PORTFOLIO</h1>
-
-    <div class="hive-cluster">
-        
-        <div class="hex-row">
-            <div class="hex"><div class="hex-inner"><img src="https://picsum.photos/200/300?1"><div class="hex-text"><h3>PROJECT</h3><p>Design</p></div></div></div>
-            <div class="hex"><div class="hex-inner"><img src="https://picsum.photos/200/300?2"><div class="hex-text"><h3>PROJECT</h3><p>Dev</p></div></div></div>
-            <div class="hex"><div class="hex-inner"><img src="https://picsum.photos/200/300?3"><div class="hex-text"><h3>PROJECT</h3><p>UX/UI</p></div></div></div>
-            <div class="hex"><div class="hex-inner"><img src="https://picsum.photos/200/300?4"><div class="hex-text"><h3>PROJECT</h3><p>Web</p></div></div></div>
-        </div>
-
-        <div class="hex-row">
-            <div class="hex"><div class="hex-inner"><img src="https://picsum.photos/200/300?5"><div class="hex-text"><h3>PROJECT</h3><p>App</p></div></div></div>
-            <div class="hex"><div class="hex-inner"><img src="https://picsum.photos/200/300?6"><div class="hex-text"><h3>PROJECT</h3><p>API</p></div></div></div>
-            <div class="hex"><div class="hex-inner"><img src="https://picsum.photos/200/300?7"><div class="hex-text"><h3>PROJECT</h3><p>Core</p></div></div></div>
-            <div class="hex"><div class="hex-inner"><img src="https://picsum.photos/200/300?8"><div class="hex-text"><h3>PROJECT</h3><p>Data</p></div></div></div>
-            <div class="hex"><div class="hex-inner"><img src="https://picsum.photos/200/300?9"><div class="hex-text"><h3>PROJECT</h3><p>Cloud</p></div></div></div>
-        </div>
-
-        <div class="hex-row">
-            <div class="hex"><div class="hex-inner"><img src="https://picsum.photos/200/300?10"><div class="hex-text"><h3>PROJECT</h3><p>AI</p></div></div></div>
-            <div class="hex"><div class="hex-inner"><img src="https://picsum.photos/200/300?11"><div class="hex-text"><h3>PROJECT</h3><p>ML</p></div></div></div>
-            <div class="hex"><div class="hex-inner"><img src="https://picsum.photos/200/300?12"><div class="hex-text"><h3>PROJECT</h3><p>Sec</p></div></div></div>
-            <div class="hex"><div class="hex-inner"><img src="https://picsum.photos/200/300?13"><div class="hex-text"><h3>PROJECT</h3><p>IoT</p></div></div></div>
-        </div>
-
-        <div class="hex-row">
-            <div class="hex"><div class="hex-inner"><img src="https://picsum.photos/200/300?14"><div class="hex-text"><h3>PROJECT</h3><p>VR</p></div></div></div>
-            <div class="hex"><div class="hex-inner"><img src="https://picsum.photos/200/300?15"><div class="hex-text"><h3>PROJECT</h3><p>AR</p></div></div></div>
-            <div class="hex"><div class="hex-inner"><img src="https://picsum.photos/200/300?16"><div class="hex-text"><h3>PROJECT</h3><p>Game</p></div></div></div>
-        </div>
-
+    <div style="height: 100vh; display: flex; align-items: center; justify-content: center; color: #555;">
+        <h2>[ เลื่อนหน้าจอลงมา (Scroll Down) ]</h2>
     </div>
+
+    <section class="contact-section">
+        <div class="contact-container">
+            
+            <div class="contact-info scroll-hidden">
+                <h1>Let's work<br>together.</h1>
+                <p>มีโปรเจกต์ที่น่าสนใจ หรือต้องการปรึกษาเรื่องการออกแบบและพัฒนาระบบ สามารถติดต่อผมได้โดยตรงผ่านช่องทางเหล่านี้ครับ</p>
+                
+                <div class="social-links">
+                    <a href="https://instagram.com/your_id" target="_blank" class="social-btn ig">
+                        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        Instagram
+                    </a>
+                    <a href="https://facebook.com/your_id" target="_blank" class="social-btn fb">
+                        <svg viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+                        Facebook
+                    </a>
+                    <a href="https://line.me/ti/p/your_id" target="_blank" class="social-btn line">
+                        <svg viewBox="0 0 24 24"><path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.122.303.079.778.039 1.085l-.171 1.027c-.053.303-.242 1.186 1.039.647 1.281-.54 6.911-4.069 9.428-6.967 1.739-1.907 2.572-4.135 2.572-6.002zm-15.013 3.32h-3.004c-.328 0-.594-.265-.594-.593v-5.636c0-.328.266-.593.594-.593.329 0 .594.265.594.593v5.042h2.41c.329 0 .594.265.594.593 0 .328-.265.594-.594.594zm2.149-6.229c.328 0 .593.265.593.593v5.636c0 .328-.265.593-.593.593-.329 0-.593-.265-.593-.593v-5.636c0-.328.264-.593.593-.593zm6.393 4.542h-2.122v-4.542c0-.328-.266-.593-.594-.593-.329 0-.594.265-.594.593v5.636c0 .328.265.593.594.593h2.716c.329 0 .594-.265.594-.593 0-.328-.265-.593-.594-.593z"/></svg>
+                        LINE
+                    </a>
+                </div>
+            </div>
+
+            <div class="contact-form scroll-hidden delay-1">
+                <form action="#" method="POST">
+                    <div class="input-box">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="input-box">
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="input-box">
+                        <textarea placeholder="Tell me about your project..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        // ใช้ Intersection Observer เพื่อตรวจจับว่าเลื่อนจอมาถึง Element หรือยัง
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                // ถ้ามองเห็น Element นั้นบนหน้าจอ
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('scroll-show'); // ใส่คลาสที่ทำให้โผล่ขึ้นมา
+                }
+            });
+        }, {
+            threshold: 0.1 // ให้โผล่มาตอนที่เลื่อนมาเห็น 10% ของกล่อง
+        });
+
+        // สั่งให้ Observer เฝ้าดูทุก Element ที่มีคลาส .scroll-hidden
+        const hiddenElements = document.querySelectorAll('.scroll-hidden');
+        hiddenElements.forEach((el) => observer.observe(el));
+    </script>
 
 </body>
 </html>

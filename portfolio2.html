@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PUNteerased</title>
+    <link rel="icon" type="image/x-icon" href="image/pun.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="css/portfolio.css" />
+    <link rel="stylesheet" href="css/loader.css" />
+</head>
+<body>
+    <div id="loader">
+        <canvas id="matrix"></canvas>
+    </div>
+
+    <main class="home content">
+        <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="menu-panel">
+            MENU
+        </button>
+        <nav class="menu-panel" id="menu-panel" aria-hidden="true">
+            <a class="menu-item" data-en="HOME" data-th="หน้าแรก" href="index.html">
+                <span class="menu-label">HOME</span>
+            </a>
+            <a class="menu-item" data-en="ABOUT" data-th="เกี่ยวกับ" href="about.html">
+                <span class="menu-label">ABOUT</span>
+            </a>
+            <a class="menu-item is-current" data-en="PORTFOLIO" data-th="ผลงาน" aria-disabled="true" tabindex="-1">
+                <span class="menu-label">PORTFOLIO</span>
+                <span class="menu-dot" aria-hidden="true">•</span>
+            </a>
+            <a class="menu-item" data-en="CONTACT" data-th="ติดต่อ" href="contact.html">
+                <span class="menu-label">CONTACT</span>
+            </a>
+            <button class="menu-item menu-action" id="translation-toggle" data-mode="en">
+                <span class="menu-label">TH / EN</span>
+            </button>
+            <button class="menu-item menu-action" id="theme-toggle" data-theme="night">
+                <span class="menu-label">DAY / NIGHT</span>
+            </button>
+        </nav>
+        <section class="hive-shell">
+            <header class="hive-header title-stack">
+                <h1 data-en="PORTFOLIO" data-th="ผลงาน">PORTFOLIO</h1>
+            </header>
+
+            <div class="hive-grid" aria-label="Portfolio honeycomb grid">
+                <div class="hive-row">
+                    <button class="hive-cell" type="button" aria-label="Brand Identity Hive" data-title-en="Brand Identity Hive" data-title-th="รังผึ้งแบรนด์ไอเดนทิตี้" data-desc-en="A visual system project focused on modular logos, color rhythm, and adaptive social assets." data-desc-th="โปรเจกต์ระบบภาพแบรนด์ เน้นโลโก้แบบโมดูลาร์ จังหวะสี และสื่อโซเชียลที่ปรับใช้ได้" data-banner="Brand Identity" data-image="image/pun.png"></button>
+                    <button class="hive-cell" type="button" aria-label="UI Prototype System" data-title-en="UI Prototype System" data-title-th="ระบบต้นแบบ UI" data-desc-en="Interactive app prototype with component-driven layout and smooth micro-interactions." data-desc-th="ต้นแบบแอปแบบโต้ตอบ ใช้เลย์เอาต์จากคอมโพเนนต์และไมโครอินเทอร์แอคชันลื่นไหล" data-banner="UI Prototype" data-image="image/pun.png"></button>
+                    <button class="hive-cell" type="button" aria-label="Motion Teaser Clip" data-title-en="Motion Teaser Clip" data-title-th="คลิปโมชั่นทีเซอร์" data-desc-en="Short-form motion graphics that blend typography, rhythm, and cinematic transitions." data-desc-th="โมชั่นกราฟิกสั้นที่ผสานตัวอักษร จังหวะ และทรานซิชันสไตล์ภาพยนตร์" data-banner="Motion Design" data-image="image/pun.png"></button>
+                    <button class="hive-cell" type="button" aria-label="Web Experience Build" data-title-en="Web Experience Build" data-title-th="งานพัฒนาเว็บเอ็กซ์พีเรียนซ์" data-desc-en="Responsive web build that keeps strong visual identity across desktop and mobile." data-desc-th="งานพัฒนาเว็บแบบ Responsive ที่คงเอกลักษณ์ภาพให้ชัดเจนทั้งเดสก์ท็อปและมือถือ" data-banner="Web Build" data-image="image/pun.png"></button>
+                    <button class="hive-cell" type="button" aria-label="Campaign Visual Set" data-title-en="Campaign Visual Set" data-title-th="ชุดภาพแคมเปญ" data-desc-en="A campaign direction built for multiple channels with one coherent visual language." data-desc-th="ทิศทางภาพแคมเปญที่ออกแบบให้ใช้ได้หลายช่องทางด้วยภาษาภาพเดียวกัน" data-banner="Campaign" data-image="image/pun.png"></button>
+                </div>
+                <div class="hive-row is-offset">
+                    <button class="hive-cell" type="button" aria-label="Experimental Lab" data-title-en="Experimental Lab" data-title-th="ห้องทดลองงานสร้างสรรค์" data-desc-en="Experimental concepts for typography and interaction ready to evolve into new products." data-desc-th="แนวคิดทดลองด้านตัวอักษรและอินเทอร์แอคชัน พร้อมต่อยอดเป็นผลงานใหม่" data-banner="Lab Session" data-image="image/pun.png"></button>
+                    <button class="hive-cell" type="button" aria-label="Editorial Layout Kit" data-title-en="Editorial Layout Kit" data-title-th="ชุดเลย์เอาต์งานบรรณาธิการ" data-desc-en="Editorial visual kit balancing typography hierarchy, modular spacing, and cross-platform readability." data-desc-th="ชุดภาพงานบรรณาธิการที่บาลานซ์ลำดับตัวอักษร ระยะโมดูลาร์ และการอ่านข้ามแพลตฟอร์ม" data-banner="Editorial" data-image="image/pun.png"></button>
+                    <button class="hive-cell" type="button" aria-label="Packaging Concept Hive" data-title-en="Packaging Concept Hive" data-title-th="รังผึ้งคอนเซปต์แพ็กเกจจิ้ง" data-desc-en="Packaging concept exploration focused on shelf impact, premium texture, and production-ready structure." data-desc-th="งานคอนเซปต์แพ็กเกจจิ้งที่เน้นความโดดเด่นบนชั้นวาง ผิวสัมผัสพรีเมียม และโครงสร้างที่ผลิตจริงได้" data-banner="Packaging" data-image="image/pun.png"></button>
+                    <button class="hive-cell" type="button" aria-label="3D Product Teaser" data-title-en="3D Product Teaser" data-title-th="ทีเซอร์สินค้า 3 มิติ" data-desc-en="Stylized 3D teaser visuals combining cinematic light setup and bold product framing." data-desc-th="ภาพทีเซอร์สินค้า 3 มิติที่ผสานการจัดแสงแบบภาพยนตร์และการจัดเฟรมสินค้าให้เด่น" data-banner="3D Teaser" data-image="image/pun.png"></button>
+                </div>
+                <div class="hive-row">
+                    <button class="hive-cell" type="button" aria-label="Creative Direction Board" data-title-en="Creative Direction Board" data-title-th="บอร์ดกำกับทิศทางสร้างสรรค์" data-desc-en="Direction board defining mood, tone, and key visual signatures for an entire campaign cycle." data-desc-th="บอร์ดกำกับทิศทางที่กำหนดอารมณ์ โทน และซิกเนเจอร์ภาพสำหรับทั้งรอบแคมเปญ" data-banner="Direction" data-image="image/pun.png"></button>
+                    <button class="hive-cell" type="button" aria-label="Interaction Micro Lab" data-title-en="Interaction Micro Lab" data-title-th="ห้องทดลองไมโครอินเทอร์แอคชัน" data-desc-en="A micro-interaction lab testing motion timing, tactile response, and interaction feedback." data-desc-th="ห้องทดลองไมโครอินเทอร์แอคชันทดสอบจังหวะโมชั่น การตอบสนอง และฟีดแบ็กการใช้งาน" data-banner="Interaction Lab" data-image="image/pun.png"></button>
+                    <button class="hive-cell" type="button" aria-label="Visual Story Sequence" data-title-en="Visual Story Sequence" data-title-th="ลำดับภาพเล่าเรื่อง" data-desc-en="Narrative visual sequence designed for campaign storytelling across touchpoints." data-desc-th="ลำดับภาพเล่าเรื่องเพื่อใช้ในแคมเปญข้ามหลายจุดสัมผัส" data-banner="Story Sequence" data-image="image/pun.png"></button>
+                    <button class="hive-cell" type="button" aria-label="Brand Motion Toolkit" data-title-en="Brand Motion Toolkit" data-title-th="ชุดโมชั่นแบรนด์" data-desc-en="Motion toolkit for logo behavior, transition rhythm, and reusable visual dynamics." data-desc-th="ชุดโมชั่นสำหรับการเคลื่อนไหวโลโก้ จังหวะทรานซิชัน และไดนามิกภาพที่นำกลับมาใช้ซ้ำได้" data-banner="Motion Toolkit" data-image="image/pun.png"></button>
+                    <button class="hive-cell" type="button" aria-label="Digital Poster Series" data-title-en="Digital Poster Series" data-title-th="ซีรีส์โปสเตอร์ดิจิทัล" data-desc-en="Poster exploration emphasizing composition contrast and typographic impact." data-desc-th="ทดลองออกแบบโปสเตอร์ที่เน้นคอนทราสต์องค์ประกอบและพลังของไทโปกราฟี" data-banner="Poster Series" data-image="image/pun.png"></button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <aside class="project-banner" id="project-banner" aria-hidden="true">
+        <div class="project-banner__backdrop" data-close-banner></div>
+        <article class="project-banner__card" role="dialog" aria-modal="true" aria-labelledby="project-title">
+            <button class="project-banner__close" type="button" id="project-close" aria-label="Close project details">x</button>
+            <div class="project-banner__media-wrap">
+                <img class="project-banner__media" id="project-image" alt="Project preview" />
+                <div class="project-banner__media-placeholder" id="project-image-placeholder">NO IMAGE</div>
+            </div>
+            <div class="project-banner__content">
+                <p class="project-banner__tag" id="project-tag">Project</p>
+                <h2 class="project-banner__title" id="project-title">Title</h2>
+                <p class="project-banner__desc" id="project-desc">Description</p>
+            </div>
+        </article>
+    </aside>
+
+    <footer class="site-footer">Copyright © 2026 PUNteerased. All rights reserved.</footer>
+
+    <script src="js/loader.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/portfolio.js"></script>
+</body>
+</html>
